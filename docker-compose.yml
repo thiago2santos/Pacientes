@@ -1,0 +1,60 @@
+version: '3.1'
+
+services:
+  nginx:
+    build:
+      dockerfile: ./loadbalancer/Dockerfile
+      context: .
+    image: nginx
+    container_name: loadbalancer
+    ports: 
+      - "80:80"
+    networks: 
+      - upanet
+
+  upadb:
+    image: mysql
+    container_name: upadb
+    command: --default-authentication-plugin=mysql_native_password
+    restart: always
+    environment:
+      MYSQL_ROOT_PASSWORD: devel.123
+      MYSQL_DATABASE: upajundiai
+      MYSQL_USER: thiago
+      MYSQL_PASSWORD: teste.123
+    ports:
+      - "3306:3306"
+      - "3306"
+    networks: 
+      - upanet
+  
+  frontend:
+    image: frontend
+    container_name: upafrontend
+    build:
+      context: ./front
+      dockerfile: Dockerfile
+    ports:
+    - "8080:8080"
+    networks: 
+      - upanet
+    depends_on: 
+      - "backend"
+
+  backend:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    image: backend
+    container_name: upabackend
+    ports:
+      - "8089:8089"
+      - "3306"
+    networks: 
+      - upanet
+    depends_on:
+      - "upadb"
+  
+networks: 
+  upanet:
+    driver: bridge

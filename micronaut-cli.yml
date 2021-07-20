@@ -1,0 +1,6 @@
+applicationType: default
+defaultPackage: br.com.dominio
+testFramework: junit
+sourceLanguage: kotlin
+buildTool: gradle
+features: [app-name, aws-v2-sdk, data, data-jpa, gradle, hibernate-jpa, hibernate-validator, http-client, http-session, jackson-xml, jdbc-hikari, junit, kotlin, kotlin-application, kotlin-extension-functions, log4j2, mockito, mysql, netty-server, openapi, readme, security-annotations, security-jwt, shade, testcontainers, yaml]
