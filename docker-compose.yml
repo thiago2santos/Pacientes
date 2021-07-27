@@ -1,17 +1,5 @@
 version: '3.1'
-
-services:
-  nginx:
-    build:
-      dockerfile: ./loadbalancer/Dockerfile
-      context: .
-    image: nginx
-    container_name: loadbalancer
-    ports: 
-      - "80:80"
-    networks: 
-      - upanet
-
+services: 
   upadb:
     image: mysql
     container_name: upadb
@@ -24,7 +12,6 @@ services:
       MYSQL_PASSWORD: teste.123
     ports:
       - "3306:3306"
-      - "3306"
     networks: 
       - upanet
   
@@ -35,7 +22,7 @@ services:
       context: ./front
       dockerfile: Dockerfile
     ports:
-    - "8080:8080"
+      - "80:80/tcp"
     networks: 
       - upanet
     depends_on: 
@@ -49,7 +36,6 @@ services:
     container_name: upabackend
     ports:
       - "8089:8089"
-      - "3306"
     networks: 
       - upanet
     depends_on:
@@ -57,4 +43,5 @@ services:
   
 networks: 
   upanet:
+    name: upanet
     driver: bridge
