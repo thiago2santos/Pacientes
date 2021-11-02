@@ -17,7 +17,7 @@ micronaut:
 #      header: true
 datasources:
   default:
-    url: jdbc:mysql://upadb:3306/upajundiai
+    url: jdbc:mysql://localhost:3306/upajundiai
     driverClassName: com.mysql.cj.jdbc.Driver
     username: root
     password: devel.123

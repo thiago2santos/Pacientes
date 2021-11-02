@@ -38,14 +38,14 @@ class PacienteController(
         return ResponseEntity.created(location).body(obj)
     }
 
-    @Put
+    @Patch
     fun update(@RequestBody paciente: Paciente): ResponseEntity<Paciente> {
         val obj = pacienteService.update(paciente)
         return ResponseEntity.ok().body(obj)
     }
 
-    @Delete
-    fun delete(@RequestBody paciente: Paciente) {
-        pacienteService.delete(paciente)
+    @Delete("/{idPaciente}")
+    fun delete(idPaciente: Long) {
+        pacienteService.delete(idPaciente)
     }
 }

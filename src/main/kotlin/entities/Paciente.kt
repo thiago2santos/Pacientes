@@ -12,5 +12,7 @@ data class Paciente(
     val nome: String,
     val documento: String,
     val dataNascimento: LocalDate,
-    val nomeDaMae: String
+    val nomeDaMae: String,
+    @Transient
+    var fichasDeAtendimento: MutableSet<FichaAtendimentoAmbulatorial>
 )

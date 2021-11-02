@@ -24,8 +24,9 @@ class PacienteService(val pacienteRepository: PacienteRepository) {
         return pacienteRepository.update(paciente)
     }
 
-    fun delete(paciente: Paciente){
-        pacienteRepository.delete(paciente)
+    fun delete(idPaciente: Long) {
+        val paciente = pacienteRepository.findById(idPaciente)
+        paciente.ifPresent { paciente -> pacienteRepository.delete(paciente) }
     }
 
 }

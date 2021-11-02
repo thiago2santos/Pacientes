@@ -1,0 +1,9 @@
+package enums
+
+enum class RespostaMotora {
+    NENHUMA,
+    EXTENSAO_ANORMAL,
+    FLEXAO_ANORMAL,
+    MOVIMENTO_DE_RETIRADA,
+    LOCALIZA_DOR, OBEDECE_COMANDOS
+}
